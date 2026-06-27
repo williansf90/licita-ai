@@ -3,3 +3,6 @@ uvicorn
 python-multipart
 streamlit
 requests
+pdfplumber
+google-generativeai
+python-dotenv

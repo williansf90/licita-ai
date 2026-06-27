@@ -23,22 +23,28 @@ if st.button("Analisar Edital com IA"):
                 resposta = requests.post("http://localhost:8000/analisar-edital/", files=files)
                 
                 if resposta.status_code == 200:
-                    dados = resposta.json()["analise_ia"]
+                    resposta_json = resposta.json()
                     
-                    st.success("Análise concluída com sucesso!")
-                    
-                    # Exibindo os resultados de forma estruturada e amigável
-                    st.markdown("### 📌 Resumo do Edital")
-                    st.write(f"**Objeto:** {dados['objeto']}")
-                    st.write(f"**Valor Estimado:** {dados['valor_estimado']}")
-                    
-                    st.markdown("### ⏳ Prazos Críticos")
-                    for prazo in dados['prazos_criticos']:
-                        st.warning(prazo)
+                    # Verificando se o backend enviou um aviso de erro
+                    if "erro" in resposta_json:
+                        st.error(f"Erro no servidor: {resposta_json['erro']}")
+                    else:
+                        dados = resposta_json["analise_ia"]
                         
-                    st.markdown("### 📁 Documentação Exigida")
-                    for doc in dados['documentacao_exigida']:
-                        st.info(f"- {doc}")
+                        st.success("Análise concluída com sucesso!")
+                        
+                        # Exibindo os resultados
+                        st.markdown("### 📌 Resumo do Edital")
+                        st.write(f"**Objeto:** {dados.get('objeto', 'N/A')}")
+                        st.write(f"**Valor Estimado:** {dados.get('valor_estimado', 'N/A')}")
+                        
+                        st.markdown("### ⏳ Prazos Críticos")
+                        for prazo in dados.get('prazos_criticos', []):
+                            st.warning(prazo)
+                            
+                        st.markdown("### 📁 Documentação Exigida")
+                        for doc in dados.get('documentacao_exigida', []):
+                            st.info(f"- {doc}")
                 else:
                     st.error("Erro na comunicação com o servidor.")
             
