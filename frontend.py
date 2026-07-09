@@ -34,7 +34,7 @@ if analisar_btn:
                 # Extração de texto
                 texto_edital = ""
                 with pdfplumber.open(arquivo_pdf) as pdf:
-                    limite_paginas = min(40, len(pdf.pages))
+                    limite_paginas = min(20, len(pdf.pages))
                     for i in range(limite_paginas):
                         pagina_texto = pdf.pages[i].extract_text()
                         if pagina_texto:
