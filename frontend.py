@@ -42,10 +42,9 @@ if analisar_btn:
                         texto_edital += pagina_texto + "\n"
 
                 # --- MODO DEMONSTRAÇÃO ---
+                import time
                 if arquivo_pdf.name == "EDITAL BELÉM CE 90015-2026.pdf":
-                    import time
                     time.sleep(5)
-
                     texto_resposta = """
                     {
                         "objeto": "Contratação de empresa especializada no ramo da construção civil para a execução de obra visando à construção de Unidade Básica de Saúde (UBS) Porte V, para atender as necessidades da Secretaria Municipal de Saúde (SESMA) de Belém/PA",
@@ -55,6 +54,19 @@ if analisar_btn:
                     }
                     """
                     limite_paginas = 20
+
+                elif arquivo_pdf.name == "EDITAL CHU-UFPA PE 90038-2026.pdf":
+                    time.sleep(5)
+                    texto_resposta = """
+                    {
+                        "objeto": "Aquisição de Produtos para Saúde - Fios Cirúrgicos, para atender às necessidades do Complexo Hospitalar Universitário da Universidade Federal do Pará (UFPA)",
+                        "valor_estimado": "Não informado",
+                        "prazos_criticos": ["Data e horário da sessão pública: 08/07/2026 às 10h (Horário de Brasília)", "Impugnação ao edital e pedidos de esclarecimentos: Até 2 dias úteis antes da data do certame", "Cadastramento no Sicaf: Até o terceiro dia útil anterior à data prevista para recebimento das propostas", "Prazo de validade da proposta: No mínimo 90 dias a contar da data de sua apresentação", "Envio de proposta adequada ao último lance após negociação: 2 horas", "Envio de documentos complementares de habilitação: 2 horas (prorrogável por igual período)", "Prazo de regularização fiscal e trabalhista para ME/EPP: 5 dias úteis após a declaração do vencedor", "Assinatura do Termo de Contrato ou aceite de instrumento equivalente: 5 dias úteis a contar da convocação"],
+                        "documentacao_exigida": ["Prova de inscrição no Cadastro Nacional de Pessoas Jurídicas (CNPJ) ou CPF", "Habilitação jurídica: Ato constitutivo, estatuto ou contrato social registrado na Junta Comercial (ou CCMEI para microempreendedores)", "Prova de inscrição no cadastro de contribuintes estadual e/ou municipal", "Prova de regularidade fiscal perante a Fazenda Nacional (Certidão Conjunta RFB/PGFN)", "Prova de regularidade relativa ao FGTS (CRF)", "Certidão Negativa de Débitos Trabalhistas (CNDT)", "Declaração de cumprimento do disposto no inciso XXXIII do art. 7º da CF (Trabalho do Menor)", "Certidão negativa de falência expedida pelo distribuidor da sede do licitante", "Balanço patrimonial, demonstração de resultado de exercício e demonstrações contábeis do último exercício social", "Declaração de Atendimento aos Requisitos de Habilitação (Anexo IV)", "Declaração de que as propostas econômicas compreendem a integralidade dos custos trabalhistas", "Documentação de qualificação técnica prevista no Termo de Referência"]
+                    }
+                    """
+                    limite_paginas = 20
+
                 else:
                     # Chamada da IA
                     model = genai.GenerativeModel('gemini-flash-latest')
