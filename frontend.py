@@ -42,7 +42,7 @@ if analisar_btn:
                         texto_edital += pagina_texto + "\n"
 
                 # --- MODO DEMONSTRAÇÃO ---
-                if arquivo_pdf.name.lower() == "EDITAL BELÉM CE 90015-2026.pdf":
+                if arquivo_pdf.name == "EDITAL BELÉM CE 90015-2026.pdf":
                     import time
                     time.sleep(5)
 
