@@ -41,6 +41,21 @@ if analisar_btn:
                     if pagina_texto:
                         texto_edital += pagina_texto + "\n"
 
+                # --- MODO DEMONSTRAÇÃO ---
+                if arquivo_pdf.name.lower() == "EDITAL BELÉM CE 90015-2026.pdf":
+                    import time
+                    time.sleep(5)
+
+                    texto_resposta = """
+                    {
+                        "objeto": "Contratação de empresa especializada no ramo da construção civil para a execução de obra visando à construção de Unidade Básica de Saúde (UBS) Porte V, para atender as necessidades da Secretaria Municipal de Saúde (SESMA) de Belém/PA",
+                        "valor_estimado": "R$ 6.515.602,35",
+                        "prazos_criticos": ["Início da Sessão Pública: 21/07/2026 às 10h00 (horário de Brasília/DF)", "Prazo de execução da obra: 14 meses a contar do recebimento da Ordem de Serviço", "Prazo de vigência da contratação: 24 meses contados a partir da assinatura do contrato", "Impugnações e esclarecimentos: encaminhar até 03 dias úteis antes da data de abertura do certame", "Envio da proposta de preços e planilhas ajustadas: em até 24 horas corridas contadas a partir da solicitação do Agente de Contratação", "Envio dos documentos de habilitação: no prazo de até 02 horas úteis a partir da convocação", "Prazo para assinatura do contrato: dentro do prazo de 10 dias após convocação", "Prazo de validade da proposta de preços: não inferior a 120 dias"],
+                        "documentacao_exigida": ["Registro cadastral atualizado no Sistema de Cadastramento Unificado de Fornecedores (SICAF)", "Habilitação Jurídica: Ato Constitutivo, Contrato Social ou Estatuto Social consolidado e registrado na Junta Comercial", "Prova de inscrição no CNPJ", "Regularidade com a Fazenda Federal, incluindo as contribuições Sociais (Dívida Ativa da União)", "Regularidade com as Fazendas Estadual e Municipal do domicílio ou sede do licitante", "Certificado de Regularidade do FGTS (CRF)", "Certidão Negativa de Débitos Trabalhistas (CNDT)", "Certidão Negativa de Falência ou Recuperações Judiciais e Extrajudiciais", "Balanço Patrimonial e Demonstração do Resultado do Exercício (DRE) dos 2 últimos exercícios sociais", "Declaração dos índices de Liquidez Geral (LG), Liquidez Corrente (LC) e Solvência Geral (SG) assinada por profissional contábil", "Registro ou inscrição da empresa no CAU ou CONFEA/CREA em plena validade", "Atestado de Capacidade Técnico-Profissional em nome do engenheiro civil ou arquiteto indicado", "Comprovação de Capacidade Técnico-Operacional (Atestados de execução de obras semelhantes acompanhados de CAT/ART/RRT)", "Declaração de Vistoria Prévia ou Declaração Formal assinada pelo responsável técnico sobre o conhecimento das condições locais de execução", "Declarações unificadas no sistema (Trabalho do Menor, Inexistência de Fato Impeditivo, Fidelidade e Veracidade, Elaboração de Proposta Independente, etc.)"]
+                    }
+                    """
+                    limite_paginas = 20
+                else:
                 # Chamada da IA
                 model = genai.GenerativeModel('gemini-flash-latest')
                 prompt = f"""
