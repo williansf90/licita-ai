@@ -60,7 +60,7 @@ if analisar_btn:
                 {texto_edital}
                 """
 
-                response = model.generate_content(prompt, request_options={"timeout": 60})
+                response = model.generate_content(prompt, request_options={"timeout": 600})
                 
                 # Limpeza da resposta
                 texto_resposta = response.text.strip()
