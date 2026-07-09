@@ -56,35 +56,35 @@ if analisar_btn:
                     """
                     limite_paginas = 20
                 else:
-                # Chamada da IA
-                model = genai.GenerativeModel('gemini-flash-latest')
-                prompt = f"""
-                Você é um assistente especialista em licitações públicas chamado LicitaAI.
-                Leia o trecho do edital abaixo e extraia as seguintes informações estritamente em formato JSON.
-                Não adicione nenhuma introdução, nenhuma conclusão e nenhum bloco de código markdown (como ```json).
-                Retorne APENAS o objeto JSON.
+                    # Chamada da IA
+                    model = genai.GenerativeModel('gemini-flash-latest')
+                    prompt = f"""
+                    Você é um assistente especialista em licitações públicas chamado LicitaAI.
+                    Leia o trecho do edital abaixo e extraia as seguintes informações estritamente em formato JSON.
+                    Não adicione nenhuma introdução, nenhuma conclusão e nenhum bloco de código markdown (como ```json).
+                    Retorne APENAS o objeto JSON.
                 
-                Formato esperado:
-                {{
-                    "objeto": "Texto resumido explicando claramente o que está sendo contratado",
-                    "valor_estimado": "Valor monetário total estimado, formatado em R$. Se não houver, escreva 'Não informado'",
-                    "prazos_criticos": ["Prazo 1", "Prazo 2"],
-                    "documentacao_exigida": ["Doc 1", "Doc 2"]
-                }}
+                    Formato esperado:
+                    {{
+                        "objeto": "Texto resumido explicando claramente o que está sendo contratado",
+                        "valor_estimado": "Valor monetário total estimado, formatado em R$. Se não houver, escreva 'Não informado'",
+                        "prazos_criticos": ["Prazo 1", "Prazo 2"],
+                        "documentacao_exigida": ["Doc 1", "Doc 2"]
+                    }}
 
-                Edital:
-                {texto_edital}
-                """
+                    Edital:
+                    {texto_edital}
+                    """
 
-                response = model.generate_content(prompt, request_options={"timeout": 600})
+                    response = model.generate_content(prompt, request_options={"timeout": 600})
                 
-                # Limpeza da resposta
-                texto_resposta = response.text.strip()
-                if texto_resposta.startswith("```json"):
-                    texto_resposta = texto_resposta.replace("```json", "", 1)
-                if texto_resposta.endswith("```"):
-                    texto_resposta = texto_resposta[:-3]
-                texto_resposta = texto_resposta.strip()
+                    # Limpeza da resposta
+                    texto_resposta = response.text.strip()
+                    if texto_resposta.startswith("```json"):
+                        texto_resposta = texto_resposta.replace("```json", "", 1)
+                    if texto_resposta.endswith("```"):
+                        texto_resposta = texto_resposta[:-3]
+                    texto_resposta = texto_resposta.strip()
                 
                 dados = json.loads(texto_resposta)
 
