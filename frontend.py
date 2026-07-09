@@ -1,5 +1,5 @@
 import streamlit as st
-import pdfplumber
+from pypdf import PdfReader
 import google.generativeai as genai
 import json
 import os
@@ -33,12 +33,13 @@ if analisar_btn:
             try:
                 # Extração de texto
                 texto_edital = ""
-                with pdfplumber.open(arquivo_pdf) as pdf:
-                    limite_paginas = min(20, len(pdf.pages))
-                    for i in range(limite_paginas):
-                        pagina_texto = pdf.pages[i].extract_text()
-                        if pagina_texto:
-                            texto_edital += pagina_texto + "\n"
+                leitor_pdf = PdfReader(arquivo_pdf)
+                limite_paginas = min(20, len(leitor_pdf.pages))
+
+                for i in range(limite_paginas):
+                    pagina_texto = leitor_pdf.pages[i].extract_text()
+                    if pagina_texto:
+                        texto_edital += pagina_texto + "\n"
 
                 # Chamada da IA
                 model = genai.GenerativeModel('gemini-flash-latest')
