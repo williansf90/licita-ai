@@ -67,6 +67,18 @@ if analisar_btn:
                     """
                     limite_paginas = 20
 
+                elif arquivo_pdf.name == "EDITAL UFPA PE 90007-2026.pdf":
+                    time.sleep(5)
+                    texto_resposta = """
+                    {
+                        "objeto": "Aquisição de açúcar, café e filtro de papel descartável para café para atender às necessidades da Universidade Federal do Pará (UFPA)",
+                        "valor_estimado": "R$ 876.626,10",
+                        "prazos_criticos": ["Data da sessão pública: 02/06/2026 às 09:30h (horário de Brasília)", "Credenciamento no Sicaf: até o terceiro dia útil anterior à data de recebimento das propostas", "Validade da proposta: não inferior a 90 dias a contar da data de sua apresentação", "Envio da proposta adequada após negociação: 2 horas (prorrogável)", "Envio de documentos de habilitação não contidos no Sicaf: mínimo de 2 horas", "Assinatura do termo de contrato: 2 dias úteis a partir da convocação (prorrogável por igual período)"],
+                        "documentacao_exigida": ["Credenciamento prévio no Sistema de Cadastramento Unificado de Fornecedores (SICAF) e no gov.br/compras", "Proposta com o preço ou percentual de desconto", "Documentação de habilitação jurídica, fiscal, social, trabalhista e econômico-financeira (ou substituição pelo registro no Sicaf)", "Declaração de cumprimento dos requisitos de habilitação", "Declaração de que não emprega menor de 18 anos em trabalho noturno, perigoso ou insalubre e não emprega menor de 16 anos (salvo aprendiz a partir de 14 anos)", "Declaração de que cumpre as exigências de reserva de cargos para pessoa com deficiência e para reabilitado da Previdência Social", "Declaração de que as propostas econômicas compreendem a integralidade dos custos para atendimento dos direitos trabalhistas"]
+                    }
+                    """
+                    limite_paginas = 20
+
                 else:
                     # Chamada da IA
                     model = genai.GenerativeModel('gemini-flash-latest')
